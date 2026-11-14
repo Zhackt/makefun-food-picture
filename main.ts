@@ -1,11 +1,16 @@
-// The picture is a JPEG in a .png name: the gate reads the bytes, not the name.
-// A food-picture-01 entry (Node 22, standard library only): its picture is the entry.png beside this file, and
-// the program copies it to /output/entry.png.
+// Note: entry.png holds JPEG bytes despite the .png name — the picture format comes from the file's contents, not its extension.
+// Food-picture entry: this program's only job is to place the entry picture
+// where the grader looks for it. The picture is the entry.png file sitting
+// next to this script; the program copies it into the output folder.
 //
-// Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
-//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+// To try it on your own machine:
+//   mkdir -p out
+//   MAKEFUN_OUTPUT_DIR=out node main.ts
+// The copy then lands at out/entry.png.
 
-import { copyFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { copyFileSync } from "node:fs";
+import { join } from "node:path";
 
-copyFileSync(new URL('./entry.png', import.meta.url), join(process.env.MAKEFUN_OUTPUT_DIR ?? '/output', 'entry.png'));
+const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+const source = new URL("./entry.png", import.meta.url);
+copyFileSync(source, join(outputDir, "entry.png"));

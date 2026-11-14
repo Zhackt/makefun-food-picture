@@ -1,3 +1,4 @@
+// The picture is a JPEG in a .png name: the gate reads the bytes, not the name.
 // A food-picture-01 entry (Node 22, standard library only): its picture is the entry.png beside this file, and
 // the program copies it to /output/entry.png.
 //
